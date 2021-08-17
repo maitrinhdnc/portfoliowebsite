@@ -1,0 +1,59 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+<section class="hero">
+    <div class="hero-content">  
+        <div class="hero-content-intro">   
+            <img id="profile_pic" src="{% static 'images/henry_profile.jpg' %}">
+            <h1 class="name-intro">Henry <br> Mai</h1>
+        </div>
+        <div class="hero-content-subheadline">
+            <h3 class="description">Python Developer</h3>
+            <p class="slogan">Build something people want</p>
+        </div>        
+    </div>
+</section>
+
+<section class="container projects">
+    <h2>Outstanding <b>Projects</b></h2>
+    <div class="project-wrapper">
+        {% for project in projects %}
+        <div class="project-column">
+            
+            <img class="project-thumbnail" src="{{project.thumbnail.url}}">
+            <div class="project-body">
+                <a href="{{project.link}}" style="text-decoration: none; color: black;"><h6>{{project.title}}</h6></a>
+            </div>            
+        </div>
+        {% empty %}
+        <h3> No project in database...</h3>
+        {% endfor %}
+    </div>
+
+    <div class="about-wrapper">
+        <h2>More About <b>Me</b></h2>
+        <p>I was a mechanical student in Danang University of Science and Technology. After graduated, I was a solar engineer and worked as project-based work in An Giang province for 9 months. After finish project, I start think about my career path again because I used to learn Java programing at Codegym Danang Center in 2019. Now in 2021, I decide to follow as software engineer in my career path.  </p>
+    </div>        
+</section>
+
+<section class="skills" >
+    <div class="skills-container">
+        <h2>My <b>skills</b></h2>
+        {% for skill in detailSkills %}
+        <div class="skills-wrapper">
+            <h6>{{ skill.title }}</h6>
+            <p>{{ skill.body }}</p>
+        </div>
+        {% endfor %}
+
+        <h6>Other skills</h6>
+        <div class="other-skills-wrapper">
+            {% for skill in skills %}
+            <div class="skill-tag">
+                {{ skill.title }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}
